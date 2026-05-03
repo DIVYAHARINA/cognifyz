@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cognifyz | Level 1 Mastered</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #ec4899;
+            --accent: #10b981;
+            --bg: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text-main: #f1f5f9;
+            --text-dim: #94a3b8;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(236, 72, 153, 0.15) 0px, transparent 50%);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* NAVIGATION */
+        nav {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: white;
+            letter-spacing: -1px;
+        }
+
+        .logo span { color: var(--primary); }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dim);
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+            text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .section-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* CARDS */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        section {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            padding: 2.5rem;
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2 i { color: var(--primary); }
+
+        /* TASK 1 COMPONENTS */
+        .hero-img-container {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .hero-img-container:hover .hero-img {
+            transform: scale(1.1);
+        }
+
+        .form-box {
+            background: rgba(0,0,0,0.2);
+            padding: 1.5rem;
+            border-radius: 20px;
+            margin-top: 1.5rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: white;
+            outline: none;
+            margin-bottom: 1rem;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--primary);
+            background: rgba(255,255,255,0.08);
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
+        }
+
+        button {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-secondary { background: var(--secondary); color: white; }
+        .btn-accent { background: var(--accent); color: white; }
+
+        button:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* TASK 2 COMPONENTS */
+        .greeting-card {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
+            border-radius: 20px;
+            margin-bottom: 2rem;
+        }
+
+        #liveClock {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        #greetingMsg {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-dim);
+        }
+
+        /* CALCULATOR MASTER */
+        .calc-wrapper {
+            display: grid;
+            gap: 15px;
+        }
+
+        .calc-display-container {
+            background: rgba(0,0,0,0.4);
+            padding: 1.5rem;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            margin-bottom: 10px;
+            text-align: right;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calc-history-display {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            min-height: 1.2rem;
+            margin-bottom: 5px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .calc-display {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: white;
+            word-break: break-all;
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .calc-btn {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 1.2rem 0.5rem;
+            font-size: 1.1rem;
+            border-radius: 16px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .calc-btn:active {
+            transform: scale(0.95);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .calc-btn.op { 
+            background: rgba(99, 102, 241, 0.1); 
+            color: var(--primary); 
+            font-weight: 800;
+        }
+
+        .calc-btn.eq { 
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white; 
+            border: none;
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-link {
+            background: transparent;
+            border: none;
+            color: var(--text-dim);
+            cursor: pointer;
+            font-size: 1rem;
+            width: auto;
+            padding: 5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 5rem;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            transition: gap 0.3s;
+        }
+
+        .back-btn:hover { gap: 12px; }
+
+        @media (max-width: 600px) {
+            .section-header h1 { font-size: 2rem; }
+            section { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="../index.html" class="logo">COGNIFYZ<span>.L1</span></a>
+        <ul class="nav-links">
+            <li><a href="#task1">Task 1</a></li>
+            <li><a href="#task2">Task 2</a></li>
+            <li><a href="../index.html">Main Hub</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <a href="../index.html" class="back-btn"><i class="fas fa-chevron-left"></i> Return to Hub</a>
+
+        <div class="section-header">
+            <h1>Level 1 Enhancement</h1>
+            <p style="color: var(--text-dim)">A refined implementation of HTML, CSS, and JavaScript fundamentals.</p>
+        </div>
+
+        <div class="grid">
+            <!-- TASK 1: HTML/CSS ENHANCED -->
+            <section id="task1">
+                <h2><i class="fas fa-layer-group"></i> Task 1: Structure</h2>
+                <div class="hero-img-container">
+                    <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?auto=format&fit=crop&w=800&q=80" alt="Programming" class="hero-img">
+                </div>
+                <p style="color: var(--text-dim); margin-bottom: 1.5rem;">
+                    This section demonstrates semantic HTML5 with enhanced CSS3 glassmorphism. Featuring a modern responsive card layout and interactive elements.
+                </p>
+                
+                <div class="form-box">
+                    <h4 style="margin-bottom: 1rem;"><i class="fas fa-paper-plane me-2"></i>Interactive Form</h4>
+                    <form id="enhancedForm">
+                        <input type="text" placeholder="Your Full Name" required>
+                        <input type="email" placeholder="Your Email Address" required>
+                        <button type="submit" class="btn-primary">
+                            Submit Data <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- TASK 2: JAVASCRIPT ENHANCED -->
+            <section id="task2">
+                <h2><i class="fas fa-bolt"></i> Task 2: Logic</h2>
+                
+                <!-- Dynamic Greeting -->
+                <div class="greeting-card">
+                    <div id="liveClock">00:00:00</div>
+                    <div id="greetingMsg">Initializing...</div>
+                </div>
+
+                <!-- Color Interaction -->
+                <div style="margin-bottom: 2rem;">
+                    <button id="colorBtn" class="btn-secondary">
+                        <i class="fas fa-palette"></i> Change Theme Color
+                    </button>
+                </div>
+
+                <!-- Master Calculator -->
+                <div class="calc-wrapper">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h4 style="margin: 0;"><i class="fas fa-calculator me-2"></i>Master Calculator</h4>
+                        <button class="btn-link" onclick="toggleHistory()" title="View History">
+                            <i class="fas fa-history"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="calc-display-container">
+                        <div class="calc-history-display" id="history-display"></div>
+                        <div class="calc-display" id="display">0</div>
+                    </div>
+
+                    <div class="calc-grid">
+                        <button class="calc-btn op" onclick="clearCalc()">AC</button>
+                        <button class="calc-btn op" onclick="deleteLast()"><i class="fas fa-backspace"></i></button>
+                        <button class="calc-btn op" onclick="appendOp('%')">%</button>
+                        <button class="calc-btn op" onclick="appendOp('/')">÷</button>
+
+                        <button class="calc-btn" onclick="appendNum('7')">7</button>
+                        <button class="calc-btn" onclick="appendNum('8')">8</button>
+                        <button class="calc-btn" onclick="appendNum('9')">9</button>
+                        <button class="calc-btn op" onclick="appendOp('*')">×</button>
+
+                        <button class="calc-btn" onclick="appendNum('4')">4</button>
+                        <button class="calc-btn" onclick="appendNum('5')">5</button>
+                        <button class="calc-btn" onclick="appendNum('6')">6</button>
+                        <button class="calc-btn op" onclick="appendOp('-')">−</button>
+
+                        <button class="calc-btn" onclick="appendNum('1')">1</button>
+                        <button class="calc-btn" onclick="appendNum('2')">2</button>
+                        <button class="calc-btn" onclick="appendNum('3')">3</button>
+                        <button class="calc-btn op" onclick="appendOp('+')">+</button>
+
+                        <button class="calc-btn" onclick="appendNum('0')">0</button>
+                        <button class="calc-btn" onclick="appendNum('.')">.</button>
+                        <button class="calc-btn eq" style="grid-column: span 2;" onclick="calculate()">=</button>
+                    </div>
+
+                    <!-- History Panel -->
+                    <div id="history-panel" style="display: none; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 15px; margin-top: 10px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 10px;">
+                            <span style="font-weight: 700; color: var(--text-dim);">HISTORY</span>
+                            <span onclick="clearHistoryList()" style="cursor: pointer; color: var(--secondary);"><i class="fas fa-trash-alt"></i></span>
+                        </div>
+                        <div id="history-list" style="max-height: 100px; overflow-y: auto; font-size: 0.85rem; font-family: 'JetBrains Mono';">
+                            <div style="color: var(--text-dim); opacity: 0.5;">No history yet</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Cognifyz Internship · Level 1 Enhanced Edition</p>
+        <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.5;">Developed with HTML5, CSS3 & Vanilla JavaScript</p>
+    </footer>
+
+    <!-- TOAST NOTIFICATION SYSTEM -->
+    <div id="toastContainer" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+
+    <script>
+        // --- 1. CLOCK & GREETING ---
+        function updateGreeting() {
+            const now = new Date();
+            const hours = now.getHours();
+            const clockEl = document.getElementById('liveClock');
+            const msgEl = document.getElementById('greetingMsg');
+
+            clockEl.innerText = now.toLocaleTimeString([], {hour12: false});
+
+            let greeting = "";
+            let icon = "";
+            if (hours < 12) { greeting = "Good Morning!"; icon = "🌅"; }
+            else if (hours < 18) { greeting = "Good Afternoon!"; icon = "☀️"; }
+            else { greeting = "Good Evening!"; icon = "🌙"; }
+
+            msgEl.innerHTML = `${icon} ${greeting}`;
+        }
+        setInterval(updateGreeting, 1000);
+        updateGreeting();
+
+        // --- 2. COLOR CHANGER ---
+        const colorBtn = document.getElementById('colorBtn');
+        colorBtn.addEventListener('click', () => {
+            const colors = ['#6366f1', '#ec4899', '#10b981', '#f59e0b', '#ef4444', '#06b6d4'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            document.documentElement.style.setProperty('--primary', randomColor);
+            showToast(`Theme color changed to ${randomColor}`);
+        });
+
+        // --- 3. MASTER CALCULATOR ---
+        let currentInput = '0';
+        let previousInput = '';
+        let operation = null;
+        let shouldResetDisplay = false;
+        let history = [];
+
+        const display = document.getElementById('display');
+        const historyDisplay = document.getElementById('history-display');
+        const historyList = document.getElementById('history-list');
+
+        function updateDisplay() {
+            display.innerText = currentInput;
+            historyDisplay.innerText = previousInput;
+        }
+
+        function appendNum(num) {
+            if (currentInput === '0' || shouldResetDisplay) {
+                currentInput = num;
+                shouldResetDisplay = false;
+            } else {
+                currentInput += num;
+            }
+            updateDisplay();
+        }
+
+        function appendOp(op) {
+            if (operation !== null && !shouldResetDisplay) {
+                calculate();
+            }
+            previousInput = currentInput + ' ' + op;
+            operation = op;
+            shouldResetDisplay = true;
+            updateDisplay();
+        }
+
+        function clearCalc() {
+            currentInput = '0';
+            previousInput = '';
+            operation = null;
+            updateDisplay();
+        }
+
+        function deleteLast() {
+            if (shouldResetDisplay) return;
+            currentInput = currentInput.slice(0, -1);
+            if (currentInput === '') currentInput = '0';
+            updateDisplay();
+        }
+
+        function calculate() {
+            if (operation === null || shouldResetDisplay) return;
+            
+            let result;
+            const prev = parseFloat(previousInput);
+            const current = parseFloat(currentInput);
+            
+            if (isNaN(prev) || isNaN(current)) return;
+
+            switch (operation) {
+                case '+': result = prev + current; break;
+                case '-': result = prev - current; break;
+                case '*': result = prev * current; break;
+                case '/': result = current !== 0 ? prev / current : 'Error'; break;
+                case '%': result = prev % current; break;
+                default: return;
+            }
+
+            const calculation = `${previousInput} ${currentInput} = ${result}`;
+            addToHistory(calculation);
+            
+            currentInput = String(result);
+            previousInput = calculation;
+            operation = null;
+            shouldResetDisplay = true;
+            updateDisplay();
+        }
+
+        function addToHistory(calc) {
+            history.unshift(calc);
+            if (history.length > 10) history.pop();
+            renderHistory();
+        }
+
+        function renderHistory() {
+            if (history.length === 0) {
+                historyList.innerHTML = '<div style="color: var(--text-dim); opacity: 0.5;">No history yet</div>';
+                return;
+            }
+            historyList.innerHTML = history.map(item => `
+                <div style="padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--text-main);">
+                    ${item}
+                </div>
+            `).join('');
+        }
+
+        function toggleHistory() {
+            const panel = document.getElementById('history-panel');
+            panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function clearHistoryList() {
+            history = [];
+            renderHistory();
+            showToast('History cleared');
+        }
+
+        // --- 4. FORM & TOASTS ---
+        document.getElementById('enhancedForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            showToast('Form submitted successfully! 🎉');
+            e.target.reset();
+        });
+
+        function showToast(msg) {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                background: rgba(30, 41, 59, 0.9);
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 12px;
+                margin-top: 10px;
+                border-left: 4px solid var(--primary);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+                backdrop-filter: blur(10px);
+                animation: slideIn 0.3s ease-out;
+            `;
+            toast.innerText = msg;
+            document.getElementById('toastContainer').appendChild(toast);
+            setTimeout(() => {
+                toast.style.animation = 'slideOut 0.3s ease-in forwards';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Animation Keyframes
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+            @keyframes slideOut { to { transform: translateX(100%); opacity: 0; } }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
